@@ -5,7 +5,7 @@ Aplicação Next.js com Drizzle ORM, PostgreSQL e UI moderna baseada em Tailwind
 
 ---
 
-##Stack
+## Stack
 
 - **Next.js 15** (`app/` directory)
 - **React 19**
