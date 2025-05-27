@@ -1,4 +1,5 @@
 .
+├── components.json
 ├── drizzle.config.ts
 ├── eslint.config.mjs
 ├── estrutura.txt
@@ -20,9 +21,14 @@
 │   │   ├── globals.css
 │   │   ├── layout.tsx
 │   │   └── page.tsx
-│   └── db
-│       ├── index.ts
-│       └── schema.ts
+│   ├── components
+│   │   └── ui
+│   │       └── button.tsx
+│   ├── db
+│   │   ├── index.ts
+│   │   └── schema.ts
+│   └── lib
+│       └── utils.ts
 └── tsconfig.json
 
-5 directories, 21 files
+8 directories, 24 files
