@@ -1,4 +1,5 @@
-#Clinic Agenda
+# Clinic Agenda
+
 PROJETO FULL STACK CLUB
 Aplicação Next.js com Drizzle ORM, PostgreSQL e UI moderna baseada em TailwindCSS + ShadCN. Ideal para agendamento, cadastro de clínicas, pacientes, médicos e gerenciamento de consultas.
 
