@@ -1,37 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+#Clinic Agenda
+PROJETO FULL STACK CLUB
+Aplicação Next.js com Drizzle ORM, PostgreSQL e UI moderna baseada em TailwindCSS + ShadCN. Ideal para agendamento, cadastro de clínicas, pacientes, médicos e gerenciamento de consultas.
 
-## Getting Started
+---
 
-First, run the development server:
+##Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 15** (`app/` directory)
+- **React 19**
+- **TypeScript**
+- **TailwindCSS 4**
+- **ShadCN UI v2.5.0** (`@shadcn/ui`)
+- **Drizzle ORM** + `drizzle-kit` para banco de dados PostgreSQL
+- **PostgreSQL** como banco de dados
+- **Prettier + Tailwind Plugin** para formatação automática
+- **ESLint + Simple Import Sort** para padronização de código
+
+---
+
+## Estrutura do Projeto
+
+```txt
+    .
+    ├── components.json
+    ├── drizzle.config.ts
+    ├── eslint.config.mjs
+    ├── estrutura.txt
+    ├── next.config.ts
+    ├── next-env.d.ts
+    ├── package.json
+    ├── package-lock.json
+    ├── postcss.config.mjs
+    ├── public
+    │   ├── file.svg
+    │   ├── globe.svg
+    │   ├── next.svg
+    │   ├── vercel.svg
+    │   └── window.svg
+    ├── README.md
+    ├── src
+    │   ├── app
+    │   │   ├── favicon.ico
+    │   │   ├── globals.css
+    │   │   ├── layout.tsx
+    │   │   └── page.tsx
+    │   ├── components
+    │   │   └── ui
+    │   │       └── button.tsx
+    │   ├── db
+    │   │   ├── index.ts
+    │   │   └── schema.ts
+    │   └── lib
+    │       └── utils.ts
+    └── tsconfig.json
+
+    8 directories, 24 files
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Scripts Disponíveis
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```nodejs
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm run dev         # Iniciar ambiente de desenvolvimento
+npm run build       # Gerar build de produção
+npm run start       # Iniciar aplicação em produção
+npm run lint        # Rodar linter
+npx drizzle-kit push       # Sincronizar schema com o banco
+npx drizzle-kit generate   # Gerar SQLs de migração
 
-## Learn More
+```
 
-To learn more about Next.js, take a look at the following resources:
+# Convenções de Código
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- prettier com plugin Tailwind para ordenação de classes.
+- eslint com simple-import-sort ativado.
+- Salvar (Ctrl+S) ordena automaticamente classes e imports via VS Code.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Tecnologias Utilizadas
 
-## Deploy on Vercel
+- Drizzle ORM
+- TailwindCSS
+- ShadCN UI
+- PostgreSQL
+- Next.js
+- Lucide Icons
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# To-do Futuro
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# clinicagenda
+- Integração de autenticação (ex: NextAuth)
+- Tela de login e cadastro
+- Painel de gestão de agenda
+- Testes automatizados
+- Deploy (Vercel / Railway)
