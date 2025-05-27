@@ -13,5 +13,14 @@
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  }
+  },
+  "cSpell.words": [
+    "Autoincrement",
+    "Cinics",
+    "Corrigido",
+    "estrutura",
+    "nascimento",
+    "quiser",
+    "vercel"
+  ]
 }
