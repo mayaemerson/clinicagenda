@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,6 +23,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const registerSchema = z.object({
@@ -54,22 +54,28 @@ const SignUpForm = () => {
         name: values.name,
       });
 
-      // Garantir tipo seguro com narrowing
       if ("data" in result && result.data?.token) {
+        toast.success("Conta criada com sucesso!");
+
         await authClient.signIn.email({
           email: values.email,
           password: values.password,
         });
 
-        // Redirecionamento feito após o login
         router.push("/dashboard");
-      } else if ("error" in result) {
-        console.error("Erro ao registrar:", result.error);
+      } else if (
+        "error" in result &&
+        result.error?.ctx?.code === "user_already_exists"
+      ) {
+        toast.error("Email já cadastrado");
+        return;
       } else {
-        console.error("Resposta inesperada:", result);
+        toast.error("Erro ao criar a conta.");
+        console.error("Erro ao registrar:", result);
       }
     } catch (error) {
-      console.error("Erro ao tentar registrar:", error);
+      toast.error("Erro ao tentar registrar.");
+      console.error("Erro:", error);
     }
   }
 
