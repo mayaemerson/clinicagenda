@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,18 +18,21 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { authClient } from "@/lib/auth-clients";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
+
 const loginSchema = z.object({
-  name: z.string().trim().min(2, { message: "Nome é Obrigatŕio" }),
   email: z.string().email({ message: "Email inválido" }),
-  password: z.string().trim().min(8, {
-    message: "Senha é obrigratória é deve ter pelo menos 8 caracteres",
-  }),
+  password: z.string().nonempty({ message: "Senha é obrigatória" }),
 });
 
 const LoginForm = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -37,16 +41,35 @@ const LoginForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof loginSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof loginSchema>) {
+    try {
+      const response = await authClient.signIn.email({
+        email: values.email,
+        password: values.password,
+      });
+
+      if ("data" in response && response.data?.token) {
+        toast.success("Login realizado com sucesso!");
+        router.push("/dashboard");
+      } else if ("error" in response && response.error) {
+        toast.error(`Erro no login: ${response.error.message}`);
+      } else {
+        toast.error("Erro inesperado ao tentar logar.");
+        console.error("Resposta inesperada:", response);
+      }
+    } catch (error) {
+      toast.error("Erro ao conectar com o servidor.");
+      console.error("Erro ao tentar logar:", error);
+    }
   }
+
   return (
     <Card>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <CardHeader>
             <CardTitle>Login</CardTitle>
-            <CardDescription>Logar em sua conta</CardDescription>
+            <CardDescription>Entre com seus dados</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <FormField
@@ -69,7 +92,7 @@ const LoginForm = () => {
                 <FormItem>
                   <FormLabel>Senha</FormLabel>
                   <FormControl>
-                    <Input placeholder="Senha" type="password" {...field} />
+                    <Input type="password" placeholder="Senha" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -77,8 +100,16 @@ const LoginForm = () => {
             />
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="w-full">
-              Criar Conta
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={form.formState.isSubmitting}
+            >
+              {form.formState.isSubmitting ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                "Entrar"
+              )}
             </Button>
           </CardFooter>
         </form>

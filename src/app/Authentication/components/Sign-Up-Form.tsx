@@ -1,4 +1,6 @@
 "use client";
+
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,18 +26,17 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-// const signUpResult: AuthResponse = await authClient.signUp.email({ ... })
-
 const registerSchema = z.object({
-  name: z.string().trim().min(2, { message: "Nome é Obrigatŕio" }),
+  name: z.string().trim().min(2, { message: "Nome é obrigatório" }),
   email: z.string().email({ message: "Email inválido" }),
   password: z.string().trim().min(8, {
-    message: "Senha é obrigratória é deve ter pelo menos 8 caracteres",
+    message: "Senha deve ter pelo menos 8 caracteres",
   }),
 });
 
 const SignUpForm = () => {
   const router = useRouter();
+
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -53,13 +54,14 @@ const SignUpForm = () => {
         name: values.name,
       });
 
-      // Narrowing correto
+      // Garantir tipo seguro com narrowing
       if ("data" in result && result.data?.token) {
         await authClient.signIn.email({
           email: values.email,
           password: values.password,
         });
 
+        // Redirecionamento feito após o login
         router.push("/dashboard");
       } else if ("error" in result) {
         console.error("Erro ao registrar:", result.error);
@@ -67,7 +69,7 @@ const SignUpForm = () => {
         console.error("Resposta inesperada:", result);
       }
     } catch (error) {
-      console.error("Erro:", error);
+      console.error("Erro ao tentar registrar:", error);
     }
   }
 
@@ -113,7 +115,7 @@ const SignUpForm = () => {
                 <FormItem>
                   <FormLabel>Senha</FormLabel>
                   <FormControl>
-                    <Input placeholder="Senha" type="password" {...field} />
+                    <Input type="password" placeholder="Senha" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

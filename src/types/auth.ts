@@ -14,3 +14,18 @@ export type AuthResponse = {
     [key: string]: any;
   };
 };
+
+export type SignInResponse = {
+  redirect: boolean;
+  token: string;
+  url?: string;
+  user: {
+    id: string;
+    email: string;
+    name: string;
+    image?: string | null;
+    emailVerified: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+  };
+};
