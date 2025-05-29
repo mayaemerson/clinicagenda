@@ -1,19 +1,29 @@
 // src/types/auth.ts
-export type AuthResponse = {
-  token: string | null;
-  user: {
-    id: string;
-    email: string;
-    name: string;
-    image?: string | null;
-    emailVerified: boolean;
-    createdAt: Date;
-    updatedAt: Date;
-    token?: string;
-    error?: string;
-    [key: string]: any;
-  };
-};
+export type AuthResponse =
+  | {
+      data: {
+        token: string | null;
+        user: {
+          id: string;
+          email: string;
+          name: string;
+          image?: string | null;
+          emailVerified: boolean;
+          createdAt: Date;
+          updatedAt: Date;
+        };
+      };
+      error: null;
+    }
+  | {
+      data: null;
+      error: {
+        message: string;
+        code?: string;
+        status: number;
+        statusText: string;
+      };
+    };
 
 export type SignInResponse = {
   redirect: boolean;
@@ -29,3 +39,14 @@ export type SignInResponse = {
     updatedAt: Date;
   };
 };
+
+export type SignUpResult =
+  | { data: SignInResponse }
+  | {
+      error: {
+        message: string;
+        code?: string;
+        status: number;
+        statusText: string;
+      };
+    };

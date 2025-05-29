@@ -65,13 +65,17 @@ const SignUpForm = () => {
         router.push("/dashboard");
       } else if (
         "error" in result &&
-        result.error?.ctx?.code === "user_already_exists"
+        result.error &&
+        result.error.code === "user_already_exists"
       ) {
-        toast.error("Email já cadastrado");
+        toast.error("Email já cadastrado.");
         return;
+      } else if ("error" in result && result.error) {
+        toast.error(`Erro ao criar conta: ${result.error.message}`);
+        console.error("Erro ao registrar:", result.error);
       } else {
-        toast.error("Erro ao criar a conta.");
-        console.error("Erro ao registrar:", result);
+        toast.error("Erro desconhecido ao criar conta.");
+        console.error("Resposta inesperada:", result);
       }
     } catch (error) {
       toast.error("Erro ao tentar registrar.");
