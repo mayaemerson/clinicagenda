@@ -1,5 +1,7 @@
-import { Button } from "@/components/ui/button";
+// src/app/page.tsx
+
+import AuthenticationPage from "@/app/Authentication/page";
 
 export default function Home() {
-  return <Button>Bootcamp!</Button>;
+  return <AuthenticationPage />;
 }

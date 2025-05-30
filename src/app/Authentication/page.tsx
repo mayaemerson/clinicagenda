@@ -1,9 +1,16 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card } from "@/components/ui/card";
+import { getUserSession } from "@/lib/getUserSession";
+import { redirect } from "next/navigation"; // ✅ Importa o redirect para Server Components
 import LoginForm from "./components/Login-Form";
 import SignUpForm from "./components/Sign-Up-Form";
 
-const AuthenticationPage = () => {
+const AuthenticationPage = async () => {
+  const user = await getUserSession();
+
+  if (user) {
+    redirect("/dashboard");
+  }
+
   return (
     <div className="flex h-screen items-center justify-center">
       <Tabs defaultValue="login" className="w-[400px]">

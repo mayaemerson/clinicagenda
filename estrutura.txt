@@ -2,9 +2,9 @@
 ├── components.json
 ├── drizzle
 │   ├── 0000_damp_black_tom.sql
-│   └── meta
-│       ├── 0000_snapshot.json
-│       └── _journal.json
+│   ├── 0000_gigantic_king_bedlam.sql
+│   ├── relations.ts
+│   └── schema.ts
 ├── drizzle.config.ts
 ├── eslint.config.mjs
 ├── estrutura.txt
@@ -16,6 +16,8 @@
 ├── public
 │   ├── file.svg
 │   ├── globe.svg
+│   ├── icons
+│   │   └── user-fallback.svg
 │   ├── next.svg
 │   ├── vercel.svg
 │   └── window.svg
@@ -29,6 +31,7 @@
 │   │   ├── Authentication
 │   │   │   ├── components
 │   │   │   │   ├── Login-Form.tsx
+│   │   │   │   ├── SignOutButton.tsx
 │   │   │   │   └── Sign-Up-Form.tsx
 │   │   │   └── page.tsx
 │   │   ├── dashboard
@@ -44,6 +47,7 @@
 │   │       ├── form.tsx
 │   │       ├── input.tsx
 │   │       ├── label.tsx
+│   │       ├── sonner.tsx
 │   │       └── tabs.tsx
 │   ├── db
 │   │   ├── index.ts
@@ -51,10 +55,10 @@
 │   ├── lib
 │   │   ├── auth-clients.ts
 │   │   ├── auth.ts
+│   │   ├── getUserSession.ts
 │   │   └── utils.ts
 │   └── types
 │       └── auth.ts
-│           └── auth.ts
 └── tsconfig.json
 
-18 directories, 40 files
+17 directories, 45 files

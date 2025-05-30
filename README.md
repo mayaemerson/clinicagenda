@@ -22,8 +22,14 @@ Aplicação Next.js com Drizzle ORM, PostgreSQL e UI moderna baseada em Tailwind
 ## Estrutura do Projeto
 
 ```txt
-    .
+
+    clinic-agenda/
     ├── components.json
+    ├── drizzle
+    │   ├── 0000_damp_black_tom.sql
+    │   ├── 0000_gigantic_king_bedlam.sql
+    │   ├── relations.ts
+    │   └── schema.ts
     ├── drizzle.config.ts
     ├── eslint.config.mjs
     ├── estrutura.txt
@@ -35,27 +41,53 @@ Aplicação Next.js com Drizzle ORM, PostgreSQL e UI moderna baseada em Tailwind
     ├── public
     │   ├── file.svg
     │   ├── globe.svg
+    │   ├── icons
+    │   │   └── user-fallback.svg
     │   ├── next.svg
     │   ├── vercel.svg
     │   └── window.svg
     ├── README.md
     ├── src
     │   ├── app
+    │   │   ├── api
+    │   │   │   └── auth
+    │   │   │       └── [...all]
+    │   │   │           └── route.ts
+    │   │   ├── Authentication
+    │   │   │   ├── components
+    │   │   │   │   ├── Login-Form.tsx
+    │   │   │   │   ├── SignOutButton.tsx
+    │   │   │   │   └── Sign-Up-Form.tsx
+    │   │   │   └── page.tsx
+    │   │   ├── dashboard
+    │   │   │   └── page.tsx
     │   │   ├── favicon.ico
     │   │   ├── globals.css
     │   │   ├── layout.tsx
     │   │   └── page.tsx
     │   ├── components
     │   │   └── ui
-    │   │       └── button.tsx
+    │   │       ├── button.tsx
+    │   │       ├── card.tsx
+    │   │       ├── form.tsx
+    │   │       ├── input.tsx
+    │   │       ├── label.tsx
+    │   │       ├── sonner.tsx
+    │   │       └── tabs.tsx
     │   ├── db
     │   │   ├── index.ts
     │   │   └── schema.ts
-    │   └── lib
-    │       └── utils.ts
+    │   ├── lib
+    │   │   ├── auth-clients.ts
+    │   │   ├── auth.ts
+    │   │   ├── getUserSession.ts
+    │   │   └── utils.ts
+    │   └── types
+    │       └── auth.ts
     └── tsconfig.json
 
-    8 directories, 24 files
+    17 directories, 45 files
+
 
 ```
 
