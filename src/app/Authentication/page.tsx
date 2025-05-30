@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getUserSession } from "@/lib/getUserSession";
-import { redirect } from "next/navigation"; // ✅ Importa o redirect para Server Components
+import { redirect } from "next/navigation";
 import LoginForm from "./components/Login-Form";
 import SignUpForm from "./components/Sign-Up-Form";
 

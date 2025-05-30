@@ -34,6 +34,8 @@
 │   │   │   │   ├── SignOutButton.tsx
 │   │   │   │   └── Sign-Up-Form.tsx
 │   │   │   └── page.tsx
+│   │   ├── clinic-form
+│   │   │   └── page.tsx
 │   │   ├── dashboard
 │   │   │   └── page.tsx
 │   │   ├── favicon.ico
@@ -61,4 +63,4 @@
 │       └── auth.ts
 └── tsconfig.json
 
-17 directories, 45 files
+18 directories, 46 files
